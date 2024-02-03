@@ -18,7 +18,7 @@ pipeline {
         }
     }
         stages {
-        stage('Push Docker Image ') {
+        stage('Push Docker Image to DcokerHub') {
             steps {
                 docker push orrmb/roberta
             }
