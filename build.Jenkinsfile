@@ -1,27 +1,24 @@
 pipeline {
     agent any
 
-        stages {
-        stage('Dcoker hub login') {
+    stages {
+        stage('Docker Hub login') {
             steps {
-                withCredentials([string(credentialsId: 'Docker_hub', usernameVariable : 'USER', passwordVariable:'PASS')]){
-                docker login -u $USER -p $PASS
+                withCredentials([string(credentialsId: 'Docker_hub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh "docker login -u $USER -p $PASS"
                 }
             }
         }
-    }
 
-    stages {
-        stage('Build Dcoker Image') {
+        stage('Build Docker Image') {
             steps {
-                docker build -t orrmb/roberta .
+                sh 'docker build -t orrmb/roberta .'
             }
         }
-    }
-        stages {
-        stage('Push Docker Image to DcokerHub') {
+
+        stage('Push Docker Image to Docker Hub') {
             steps {
-                docker push orrmb/roberta
+                sh 'docker push orrmb/roberta'
             }
         }
     }
