@@ -22,9 +22,7 @@ pipeline {
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                sh "
-                docker push ${IMAGE_NAME}:${IMAGE_TAG}
-                "
+                sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
         stage('Trigger Deploy') {
