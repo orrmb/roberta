@@ -27,19 +27,17 @@ pipeline {
                 '''
             }
         }
+        stage('Trigger Deploy') {
+            steps {
+                build job: 'RobertaDeploy', wait: false, parameters: [
+                string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_NAME}:${IMAGE_TAG}")
+                ]
+            }
+        }
     }
     post {
        always {
             sh 'docker image prune -a --force --filter "until=24h"'
        }
     }
-    stages {
-    stage('Trigger Deploy') {
-    steps {
-        build job: 'RobertaDeploy', wait: false, parameters: [
-            string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_NAME}:${IMAGE_TAG}")
-        ]
-    }
-}
-}
 }
