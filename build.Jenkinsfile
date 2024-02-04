@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'orrmb/roberta'
+        IAMGE_TAG    = '0.0.$BUILD_NUMBER'
+    }
+
     stages {
         stage('Docker Hub login') {
             steps {
@@ -11,7 +16,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t orrmb/roberta:0.0.$BUILD_NUMBER .'
+                sh 'docker build -t "${IAMGE_TAG}:0.0.${BUILD_NUMBER}" .'
             }
         }
 
@@ -28,4 +33,11 @@ pipeline {
             sh 'docker image prune -a --force --filter "until=24h"'
        }
     }
+    stage('Trigger Deploy') {
+    steps {
+        build job: 'RobertaDeploy', wait: false, parameters: [
+            string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_NAME}:${IMAGE_TAG}")
+        ]
+    }
+}
 }
