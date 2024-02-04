@@ -9,8 +9,6 @@ pipeline {
                 }
             }
         }
-
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t orrmb/roberta:0.0.$BUILD_NUMBER .'
