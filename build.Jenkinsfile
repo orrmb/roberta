@@ -16,21 +16,21 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t "${IAMGE_TAG}:0.0.${BUILD_NUMBER}" .'
+                sh 'docker build -t "${IMAGE_NAME}:${IMAGE_TAG}" .'
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
                 sh '''
-                docker push orrmb/roberta:0.0.$BUILD_NUMBER
+                docker push "${IMAGE_NAME}:${IMAGE_TAG}"
                 '''
             }
         }
         stage('Trigger Deploy') {
             steps {
                 build job: 'RobertaDeploy', wait: false, parameters: [
-                string(name: 'ROBERTA_IMAGE_URL', value: "$IMAGE_NAME:$IMAGE_TAG")
+                string(name: 'ROBERTA_IMAGE_URL', value: "${IMAGE_NAME}:${IMAGE_TAG}")
                 ]
             }
         }
