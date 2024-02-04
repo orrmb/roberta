@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'orrmb/roberta'
-        IAMGE_TAG    = '0.0.$BUILD_NUMBER'
+        IMAGE_TAG  = '0.0.$BUILD_NUMBER'
     }
 
     stages {
