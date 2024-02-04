@@ -9,6 +9,7 @@ pipeline {
                 }
             }
         }
+     }
 
         stage('Build Docker Image') {
             steps {
@@ -28,5 +29,4 @@ pipeline {
             sh 'docker image prune -a --force --filter "until=24h"'
             }
         }
-    }
 }
