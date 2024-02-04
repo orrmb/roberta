@@ -12,13 +12,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t orrmb/roberta .'
+                sh 'docker build -t orrmb/roberta:0.0.$BUILD_NUMBER .'
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                sh 'docker push orrmb/roberta'
+                sh '''
+                docker push orrmb/roberta:0.0.$BUILD_NUMBER
+                '''
             }
         }
     }
