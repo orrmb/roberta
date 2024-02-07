@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Comppres to tar.gz') {
             steps {
+                sh 'pwd'
                 sh "sudo tar -czvf $BACKUPNAME $JENKINS_PATH"
             }
         }
