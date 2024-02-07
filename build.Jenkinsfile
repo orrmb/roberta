@@ -31,6 +31,13 @@ pipeline {
                 ]
             }
         }
+        stage('Clean Workspace'){
+            steps{
+                cleanWs(cleanWhenSuccess: true, deleteDirs: true)
+            }
+        }
+
+
    }
     post {
        always {
