@@ -5,7 +5,6 @@ pipeline {
     environment {
         BUCKET_NAME = 'jenkins-orb'
         JENKINS_PATH  = '/var/lib/jenkins'
-        #install plugin "Build Timestamp"
         BACKUPNAME = "backupforJENKINS_${BUILD_TIMESTAMP}.tar.gz"
         }
 
