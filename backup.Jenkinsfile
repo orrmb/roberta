@@ -24,7 +24,7 @@ pipeline {
 
         stage('Remove the backup  from the server'){
             steps{
-                sh "sudo rm $JENKINS_PATH/$BACKUPNAME"
+                sh "sudo rm -f $JENKINS_PATH/$BACKUPNAME"
                 sh 'Remove Complete'
             }
         }
