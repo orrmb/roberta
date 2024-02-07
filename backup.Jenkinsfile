@@ -5,7 +5,7 @@ pipeline {
     environment {
         BUCKET_NAME = 'jenkins-orb'
         JENKINS_PATH  = '/var/lib/jenkins'
-        BACKUPNAME = "backupforJENKINS_${BUILD_TIMESTAMP}.tar.gz"
+        BACKUPNAME = "backupforJENKINS_${BUILD_NUMBER}.tar.gz"
         }
 
     stages {
