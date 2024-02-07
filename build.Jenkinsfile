@@ -33,12 +33,7 @@ pipeline {
                 ]
             }
         }
-        stage('Clean Workspace'){
-            steps{cleanWs(cleanWhenSuccess(true))}
-        }
-
    }
-
     post {
        always {
             sh 'docker image prune -a --force --filter "until=1h"'
