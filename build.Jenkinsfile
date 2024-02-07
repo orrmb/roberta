@@ -19,6 +19,7 @@ pipeline {
             }
         }
 
+
         stage('Push Docker Image to Docker Hub') {
             steps {
                 sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
