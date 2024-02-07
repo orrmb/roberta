@@ -7,8 +7,12 @@ pipeline {
         JENKINS_PATH  = '/var/lib/jenkins'
         BACKUPNAME = "backupforJENKINS_$BUILD_NUMBER.tar.gz"
         }
-
     stages {
+        stage('Comppres to '){
+            steps {
+                sh 'pwd'
+            }
+        }
         stage('Comppres to tar.gz') {
             steps {
                 sh 'pwd'
@@ -30,6 +34,6 @@ pipeline {
             }
         }
     }
-  }
+ }
 
 
