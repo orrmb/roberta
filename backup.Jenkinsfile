@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Comppres to tar.gz') {
             steps {
-                sh "tar -czvf $BACKUPNAME $JENKINS_PATH"
+                sh "tar -czvfP $BACKUPNAME $JENKINS_PATH"
             }
         }
 
