@@ -5,12 +5,14 @@ pipeline {
     environment {
         BUCKET_NAME = 'jenkins-orb'
         JENKINS_PATH  = '/var/lib/jenkins'
-        BACKUPNAME = "backupforJENKINS_${BUILD_NUMBER}.tar.gz"
+        #install plugin "Build Timestamp"
+        BACKUPNAME = "backupforJENKINS_${BUILD_TIMESTAMP}.tar.gz"
         }
 
     stages {
         stage('Comppres to tar.gz') {
             steps {
+                sh 'who'
                 sh "sudo tar -czvf $BACKUPNAME $JENKINS_PATH"
             }
         }
