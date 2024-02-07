@@ -3,8 +3,9 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'orrmb/roberta'
-        IMAGE_TAG  = '0.0.$BUILD_NUMBER'
+        IMAGE_TAG  = "0.0.$BUILD_NUMBER"
     }
+    options{timestamps()}
 
     stages {
         stage('Docker Hub login') {
@@ -32,12 +33,18 @@ pipeline {
                 ]
             }
         }
-    }
 
+
+        stage('Clean Workspace'){
+            cleanWs(cleanWhenSuccess(true))
+        }
+
+    }
 
     post {
        always {
             sh 'docker image prune -a --force --filter "until=1h"'
        }
     }
+    options{timestamps()}
 }
