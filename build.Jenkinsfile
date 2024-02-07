@@ -5,8 +5,6 @@ pipeline {
         IMAGE_NAME = 'orrmb/roberta'
         IMAGE_TAG  = "0.0.$BUILD_NUMBER"
     }
-    options{timestamps()}
-
     stages {
         stage('Docker Hub login') {
             steps {
