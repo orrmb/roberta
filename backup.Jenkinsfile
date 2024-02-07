@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Comppres to tar.gz') {
             steps {
-                sh "sudo tar -czvf $BACKUPNAME $JENKINS_PATH"
+                sh "tar -czvf $BACKUPNAME $JENKINS_PATH"
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Remove the backup  from the server'){
             steps{
-                sh "sudo rm $JENKINS_PATH/$BACKUPNAME"
+                sh "rm $JENKINS_PATH/$BACKUPNAME"
                 sh 'Remove Complete'
             }
         }
