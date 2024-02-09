@@ -24,7 +24,7 @@ pipeline {
 
         stage('Remove the backup  from the server'){
             steps{
-                sh "rm $JENKINS_PATH$BACKUPNAME"
+                sh "sudo rm -f $JENKINS_PATH$BACKUPNAME"
                 sh 'echo Remove Complete'
             }
         }
@@ -37,3 +37,4 @@ pipeline {
   }
 
 
+aws s3 cp /var/lib/jenkins/backupforJENKINS_ s3://jenkins-orb/
