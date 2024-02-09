@@ -17,7 +17,7 @@ pipeline {
 
         stage('Push to s3 Bucket'){
             steps{
-                 sh "aws s3 cp $JENKINS_PATH$BACKUPNAME s3://$BUCKET_NAME/"
+                 sh "aws s3 cp  $JENKINS_PATH$BACKUPNAME s3://$BUCKET_NAME/"
                  sh 'echo Push to s3 bucket'
             }
         }
@@ -36,5 +36,3 @@ pipeline {
     }
   }
 
-
-aws s3 cp /var/lib/jenkins/backupforJENKINS_ s3://jenkins-orb/
