@@ -18,14 +18,14 @@ pipeline {
         stage('Push to s3 Bucket'){
             steps{
                  sh "aws s3 cp $JENKINS_PATH$BACKUPNAME s3://$BUCKET_NAME/"
-                 sh 'Push to s3 bucket'
+                 sh 'echo Push to s3 bucket'
             }
         }
 
         stage('Remove the backup  from the server'){
             steps{
                 sh "rm $JENKINS_PATH$BACKUPNAME"
-                sh 'Remove Complete'
+                sh 'echo Remove Complete'
             }
         }
     }
