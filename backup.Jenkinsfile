@@ -29,6 +29,11 @@ pipeline {
             }
         }
     }
+    post{
+        always {
+            cleanWs(cleanWhenSuccess: true, deleteDirs: true)
+       }
+    }
   }
 
 
