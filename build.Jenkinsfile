@@ -42,7 +42,7 @@ pipeline {
    }
     post {
        always {
-            sh 'docker image prune -a --force --filter "until=1h"'
+            sh 'docker system prune -af'
        }
     }
     options{timestamps()}
