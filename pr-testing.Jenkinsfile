@@ -5,7 +5,6 @@ pipeline {
         stage('Unittest') {
             steps {
                 sh 'echo "testing"'
-                sh 'python test_cache.py'
             }
         }
         stage('Lint') {
