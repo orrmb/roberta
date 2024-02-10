@@ -18,11 +18,17 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh '''
-                echo "linting"
-                pip install pylint
-                python3 -m pylint *.py
-                '''
+              sh 'python3 -m pylint -f parseable --reports=no *.py > pylint.log'
+            }
+            post {
+                always {
+                    sh 'cat pylint.log'
+                    recordIssues (
+                      enabledForFailure: true,
+                      aggregatingResults: true,
+                      tools: [pyLint(name: 'Pylint', pattern: '**/pylint.log')]
+                    )
+                }
             }
         }
         stage('Functional test') {
