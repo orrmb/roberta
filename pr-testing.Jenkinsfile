@@ -37,4 +37,5 @@ pipeline {
             }
         }
     }
+    options{parallelsAlwaysFailFast()}
 }
