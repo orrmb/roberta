@@ -18,7 +18,11 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh 'echo "linting"'
+                sh '''
+                echo "linting"
+                pip install pylint
+                python3 -m pylint *.py
+                '''
             }
         }
         stage('Functional test') {
