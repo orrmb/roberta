@@ -1,11 +1,11 @@
 pipeline {
     agent any
-
+    options{parallelsAlwaysFailFast()}
     stages {
         stage('Unittest') {
             steps {
                 sh '''
-                pip install -f requirements.txt
+                pip install -r requirements.txt
                 python3 -m pytest --junitxml results.xml tests
                 '''
             }
@@ -37,5 +37,4 @@ pipeline {
             }
         }
     }
-    options{parallelsAlwaysFailFast()}
 }
