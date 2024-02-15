@@ -5,13 +5,13 @@ pipeline {
     environment {
         BUCKET_NAME = 'jenkins-orb'
         JENKINS_PATH  = '/var/lib/jenkins/'
-        BACKUPNAME = "backupforJENKINS_${BUILD_NUMBER}.tar.gz"
+        BACKUPNAME = "/home/ubuntu/backupforJENKINS_${BUILD_NUMBER}.tar.gz"
         }
 
     stages {
         stage('Comppres to tar.gz') {
             steps {
-                sh "tar -czvf $JENKINS_PATH$BACKUPNAME --absolute-names $JENKINS_PATH"
+                sh "tar -czvf $BACKUPNAME --absolute-names $JENKINS_PATH"
             }
         }
 
@@ -36,3 +36,5 @@ pipeline {
     }
   }
 
+
+aws s3 cp /var/lib/jenkins/backupforJENKINS_ s3://jenkins-orb/
