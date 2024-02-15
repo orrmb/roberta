@@ -5,7 +5,7 @@ pipeline {
         stage('Unittest') {
             steps {
                 sh '''
-                pip install pytest
+                pip install -f requirements.txt
                 python3 -m pytest --junitxml results.xml tests
                 '''
             }
