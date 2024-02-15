@@ -1,3 +1,4 @@
+docker build -f <PATH_TO_DOCKERFILE> -t <IMG_NAME> .
 FROM ubuntu:latest as installer
 RUN apt-get update && apt-get install curl -y
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
