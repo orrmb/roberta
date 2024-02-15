@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-        image '<image-url>'
+        image 'orrmb/jenkinsagent'
         args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
