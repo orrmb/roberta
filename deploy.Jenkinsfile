@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+        image 'orrmb/jenkinsagent'
+        args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     parameters { string(name: 'ROBERTA_IMAGE_URL', defaultValue: '', description: '') }
 
     stages {
