@@ -11,7 +11,7 @@ RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 
 
-FROM 3.11.8-alpine as pyton_builder
+FROM python:3.11.8-alpine as pyton_builder
 RUN python -m venv /usr/bin/python3
 # this is an example demostrating how to install a tool on a some Docker image, then copy its artifacts to another image
 RUN mkdir /snyk && cd /snyk \
