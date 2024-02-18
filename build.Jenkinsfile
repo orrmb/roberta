@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        label 'general'
         docker {
+        label 'general'
         image 'orrmb/jenkinsagent'
         args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
