@@ -5,18 +5,20 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN apt-get install -y unzip \
   && unzip awscliv2.zip \
   && ./aws/install --bin-dir /aws-cli-bin/ \
+#Install kubectl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
+# this is an example demostrating how to install a tool on a some Docker image, then copy its artifacts to another image
+RUN mkdir /snyk && cd /snyk \
+    && curl https://static.snyk.io/cli/v1.666.0/snyk-linux -o snyk \
+    && chmod +x ./snyk
 
 
 
 FROM python:3.11.8-alpine as pyton_builder
 RUN python -m venv /usr/bin/python3
-# this is an example demostrating how to install a tool on a some Docker image, then copy its artifacts to another image
-RUN mkdir /snyk && cd /snyk \
-    && curl https://static.snyk.io/cli/v1.666.0/snyk-linux -o snyk \
-    && chmod +x ./snyk
+
 
 FROM jenkins/agent
 
