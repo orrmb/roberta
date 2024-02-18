@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+        image 'orrmb/jenkinsagent'
+        args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     environment {
         IMAGE_NAME = 'orrmb/roberta'
         IMAGE_TAG  = "0.0.$BUILD_NUMBER"
