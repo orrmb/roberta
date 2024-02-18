@@ -17,7 +17,7 @@ RUN mkdir /snyk && cd /snyk \
 
 
 FROM python:3.11.8-alpine as pyton_builder
-RUN python -m venv /usr/bin/python3
+RUN python -m venv /usr/local/bin/python3
 
 
 FROM jenkins/agent
